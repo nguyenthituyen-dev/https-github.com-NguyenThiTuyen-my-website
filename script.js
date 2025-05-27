@@ -249,3 +249,38 @@ function formatDate(dateString) {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     return new Date(dateString).toLocaleDateString('vi-VN', options);
 }
+
+
+// Xử lý ẩn/hiện tùy chọn tiền mặt
+function updatePaymentOptions() {
+    const receiveHospital = document.getElementById('receiveHospital').checked;
+    const cashOption = document.getElementById('cashPaymentOption');
+    const qrContainer = document.getElementById('qrCodeContainer');
+
+    // Nếu chọn nhận tại bệnh viện -> hiện cả 2 lựa chọn
+    if (receiveHospital) {
+        cashOption.style.display = 'block';
+    } 
+    // Ngược lại -> chỉ hiện QR, ẩn tiền mặt
+    else {
+        cashOption.style.display = 'none';
+        document.getElementById('paymentQR').checked = true; // Tự động chọn QR
+        qrContainer.style.display = 'block'; // Luôn hiện QR
+    }
+}
+
+// Xử lý khi thay đổi phương thức nhận
+document.querySelectorAll('input[name="receiveMethod"]').forEach(radio => {
+    radio.addEventListener('change', updatePaymentOptions);
+});
+
+// Xử lý khi thay đổi phương thức thanh toán
+document.querySelectorAll('input[name="paymentMethod"]').forEach(radio => {
+    radio.addEventListener('change', function() {
+        const qrContainer = document.getElementById('qrCodeContainer');
+        qrContainer.style.display = (this.value === 'qr') ? 'block' : 'none';
+    });
+});
+
+// Gọi hàm khi trang tải xong
+document.addEventListener('DOMContentLoaded', updatePaymentOptions);

@@ -76,3 +76,23 @@ footer {
         padding: 15px;
     }
 }
+
+.payment-method-container {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+#qrCodeContainer {
+    background-color: white;
+    padding: 15px;
+    border: 1px dashed #ddd;
+    border-radius: 5px;
+}
+
+
+.footer-hospital-name {
+    font-weight: bold;
+    color: #0d6efd;
+}
