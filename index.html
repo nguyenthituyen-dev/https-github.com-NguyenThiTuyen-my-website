@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký cấp lại giấy ra viện</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="text-center my-4">
+            <h1 class="text-primary">ĐĂNG KÝ CẤP LẠI GIẤY RA VIỆN</h1>
+            <p class="lead">Vui lòng điền đầy đủ thông tin theo yêu cầu</p>
+        </header>
+
+        <div class="progress mb-4">
+            <div class="progress-bar" role="progressbar" style="width: 25%;" id="progressBar">Bước 1/4</div>
+        </div>
+
+        <form id="registrationForm">
+            <!-- Bước 1: Thông tin bệnh nhân -->
+            <div class="form-step" id="step1">
+                <h3 class="mb-4">1. Thông tin người bệnh</h3>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="patientName" class="form-label">Họ và tên người bệnh <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="patientName" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="patientDob" class="form-label">Ngày sinh <span class="text-danger">*</span></label>
+                        <input type="date" class="form-control" id="patientDob" required>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="patientGender" class="form-label">Giới tính <span class="text-danger">*</span></label>
+                        <select class="form-select" id="patientGender" required>
+                            <option value="">Chọn giới tính</option>
+                            <option value="male">Nam</option>
+                            <option value="female">Nữ</option>
+                            <option value="other">Khác</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="patientHometown" class="form-label">Quê quán <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="patientHometown" required>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="patientId" class="form-label">Số CMND/CCCD/Hộ chiếu <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="patientId" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="medicalRecord" class="form-label">Mã hồ sơ bệnh án (nếu nhớ)</label>
+                        <input type="text" class="form-control" id="medicalRecord">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="department" class="form-label">Khoa điều trị</label>
+                        <input type="text" class="form-control" id="department">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="roomBed" class="form-label">Số giường/Số phòng (nếu có)</label>
+                        <input type="text" class="form-control" id="roomBed">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="admissionDate" class="form-label">Ngày nhập viện</label>
+                        <input type="date" class="form-control" id="admissionDate">
+                        <div class="form-check mt-2">
+                            <input class="form-check-input" type="checkbox" id="dontRememberAdmission">
+                            <label class="form-check-label" for="dontRememberAdmission">Không nhớ ngày nhập viện</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="dischargeDate" class="form-label">Ngày ra viện</label>
+                        <input type="date" class="form-control" id="dischargeDate">
+                        <div class="form-check mt-2">
+                            <input class="form-check-input" type="checkbox" id="dontRememberDischarge">
+                            <label class="form-check-label" for="dontRememberDischarge">Không nhớ ngày ra viện</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Lý do cấp lại giấy ra viện <span class="text-danger">*</span></label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="reason" id="reasonLost" value="lost" required>
+                        <label class="form-check-label" for="reasonLost">Mất giấy</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="reason" id="reasonTorn" value="torn">
+                        <label class="form-check-label" for="reasonTorn">Rách</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="reason" id="reasonWrongInfo" value="wrongInfo">
+                        <label class="form-check-label" for="reasonWrongInfo">Nhầm thông tin</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="reason" id="reasonOther" value="other">
+                        <label class="form-check-label" for="reasonOther">Khác</label>
+                        <input type="text" class="form-control mt-2" id="otherReasonText" style="display: none;">
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <button type="button" class="btn btn-secondary disabled">Quay lại</button>
+                    <button type="button" class="btn btn-primary next-step">Tiếp tục</button>
+                </div>
+            </div>
+
+            <!-- Bước 2: Thông tin người yêu cầu -->
+            <div class="form-step" id="step2" style="display: none;">
+                <h3 class="mb-4">2. Thông tin người yêu cầu</h3>
+                
+                <div class="mb-3">
+                    <label class="form-label">Bạn là <span class="text-danger">*</span></label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="requesterType" id="requesterPatient" value="patient" checked>
+                        <label class="form-check-label" for="requesterPatient">Người bệnh tự nộp</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="requesterType" id="requesterOther" value="other">
+                        <label class="form-check-label" for="requesterOther">Người khác nộp</label>
+                    </div>
+                </div>
+
+                <div id="patientRequesterInfo">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="patientPhone" class="form-label">Số điện thoại đăng ký khám <span class="text-danger">*</span></label>
+                            <input type="tel" class="form-control" id="patientPhone" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Xác thực OTP</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="otpCode" placeholder="Nhập mã OTP">
+                                <button class="btn btn-outline-secondary" type="button" id="sendOtpBtn">Gửi mã OTP</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="otherRequesterInfo" style="display: none;">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="requesterName" class="form-label">Họ và tên người yêu cầu <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="requesterName">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="requesterPosition" class="form-label">Chức vụ (nếu có)</label>
+                            <input type="text" class="form-control" id="requesterPosition">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="requesterOrganization" class="form-label">Tên cơ quan/đơn vị (nếu có)</label>
+                            <input type="text" class="form-control" id="requesterOrganization">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="relationship" class="form-label">Mối quan hệ với người bệnh <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="relationship" required>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="requesterId" class="form-label">Số CMND/CCCD <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="requesterId" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="requesterPhone" class="form-label">Số điện thoại liên hệ <span class="text-danger">*</span></label>
+                            <input type="tel" class="form-control" id="requesterPhone" required>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="requesterEmail" class="form-label">Email <span class="text-danger">*</span></label>
+                        <input type="email" class="form-control" id="requesterEmail" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="authorizationFile" class="form-label">Giấy ủy quyền hoặc công văn đề nghị <span class="text-danger">*</span></label>
+                        <input type="file" class="form-control" id="authorizationFile" accept=".pdf,.jpg,.jpeg,.png">
+                        <small class="text-muted">Chấp nhận file PDF hoặc ảnh (JPG, PNG)</small>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <button type="button" class="btn btn-secondary prev-step">Quay lại</button>
+                    <button type="button" class="btn btn-primary next-step">Tiếp tục</button>
+                </div>
+            </div>
+
+            <!-- Bước 3: Phương thức nhận kết quả -->
+            <div class="form-step" id="step3" style="display: none;">
+                <h3 class="mb-4">3. Phương thức nhận kết quả</h3>
+                
+                <div class="mb-3">
+                    <label class="form-label">Chọn phương thức nhận kết quả <span class="text-danger">*</span></label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="receiveEmail" name="receiveMethod" value="email">
+                        <label class="form-check-label" for="receiveEmail">Nhận bản PDF có ký số qua email</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="receiveHospital" name="receiveMethod" value="hospital">
+                        <label class="form-check-label" for="receiveHospital">Nhận bản in tại bệnh viện</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="receivePost" name="receiveMethod" value="post">
+                        <label class="form-check-label" for="receivePost">Nhận bản in qua bưu điện</label>
+                    </div>
+                </div>
+
+                <div id="postInfo" style="display: none;">
+                    <div class="mb-3">
+                        <label for="postAddress" class="form-label">Địa chỉ nhận bưu phẩm <span class="text-danger">*</span></label>
+                        <textarea class="form-control" id="postAddress" rows="3"></textarea>
+                    </div>
+                </div>
+
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="agreeTerms" required>
+                    <label class="form-check-label" for="agreeTerms">Tôi cam kết thông tin cung cấp là đúng sự thật và chịu trách nhiệm hoàn toàn về đơn yêu cầu này <span class="text-danger">*</span></label>
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <button type="button" class="btn btn-secondary prev-step">Quay lại</button>
+                    <button type="button" class="btn btn-primary next-step">Tiếp tục</button>
+                </div>
+            </div>
+
+            <div class="mb-3">
+    <label class="form-label">Phương thức thanh toán <span class="text-danger">*</span></label>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="paymentMethod" id="paymentOnline" value="online" required>
+        <label class="form-check-label" for="paymentOnline">Thanh toán trực tuyến (QR/VNPay)</label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="paymentMethod" id="paymentCash" value="cash">
+        <label class="form-check-label" for="paymentCash">Thanh toán tiền mặt tại bệnh viện</label>
+    </div>
+</div>
+
+<!-- Hiển thị mã QR khi chọn thanh toán online -->
+<div id="qrCodeContainer" class="text-center mb-3" style="display: none;">
+    <p class="fw-bold">Quét mã QR để thanh toán phí cấp lại giấy ra viện</p>
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://benhvienxyz.vn/thanhtoan?amount=50000" 
+         alt="Mã QR thanh toán" class="img-fluid" style="max-width: 200px;">
+    <p class="text-muted mt-2">Phí dịch vụ: 50,000 VND</p>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="confirmPayment" required>
+        <label class="form-check-label" for="confirmPayment">Tôi đã thanh toán thành công</label>
+    </div>
+</div>
+
+            <!-- Bước 4: Xác nhận thông tin -->
+            <div class="form-step" id="step4" style="display: none;">
+                <h3 class="mb-4">4. Xác nhận thông tin</h3>
+                
+                <div class="card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        Thông tin người bệnh
+                    </div>
+                    <div class="card-body">
+                        <div id="confirmPatientInfo"></div>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        Thông tin người yêu cầu
+                    </div>
+                    <div class="card-body">
+                        <div id="confirmRequesterInfo"></div>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        Phương thức nhận kết quả
+                    </div>
+                    <div class="card-body">
+                        <div id="confirmReceiveMethod"></div>
+                    </div>
+                </div>
+
+                <div class="alert alert-info">
+                    <h5>Thông tin quan trọng</h5>
+                    <ul>
+                        <li>Thời gian xử lý: Trong 03 ngày làm việc kể từ ngày nhận đủ hồ sơ hợp lệ (không tính thứ 7, CN)</li>
+                        <li>Lệ phí: Theo quy định hiện hành</li>
+                        <li>Giấy ra viện cấp lại có dấu "Cấp lại" ở góc hoặc chân trang</li>
+                    </ul>
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <button type="button" class="btn btn-secondary prev-step">Quay lại</button>
+                    <button type="submit" class="btn btn-success">Gửi yêu cầu</button>
+                </div>
+            </div>
+        </form>
+
+        <div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-success text-white">
+                        <h5 class="modal-title">Yêu cầu thành công</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Yêu cầu cấp lại giấy ra viện của bạn đã được gửi thành công!</p>
+                        <p><strong>Mã yêu cầu:</strong> <span id="requestCode"></span></p>
+                        <p>Vui lòng ghi nhớ mã này để tra cứu trạng thái yêu cầu.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                        <button type="button" class="btn btn-primary" id="printRequestBtn">In yêu cầu</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-light py-3 mt-5">
+        <div class="container text-center">
+            <p class="mb-0">© 2023 Bệnh viện XYZ - Đăng ký cấp lại giấy ra viện</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
